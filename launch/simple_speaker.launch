@@ -1,0 +1,31 @@
+<launch>
+  <arg name="CTP"                       default="1" />
+  <arg name="LAN"                       default="zh"/>
+  <arg name="USER_ID"                   default="8168466"/>
+  <arg name="SPEED"                     default="5" />
+  <arg name="PIT"                       default="5"/>
+  <arg name="VOL"                       default="5"/> 
+  <arg name="Api_Key"                   default="pmUzrWcsA3Ce7RB5rSqsvQt2" />
+  <arg name="Secrect_Key"               default="d39ec848d016a8474c7c25e308b310c3"/>
+  <arg name="Grant_type"                default="client_credentials"/>  
+  <arg name="Token_url"                 default="https://openapi.baidu.com/oauth/2.0/token" />
+  <arg name="Speeker_url"               default="http://tsn.baidu.com/text2audio"/>
+  <arg name="FORMAT"                    default="mp3"/> 
+  
+  <node pkg="simple_voice" type="simple_speek.py" name="speaker" output="screen">
+    <param name="CTP"                   value="$(arg CTP)" />
+    <param name="LAN"                   value="$(arg LAN)" />
+    <param name="USER_ID"               value="$(arg USER_ID)" />
+    <param name="SPEED"                 value="$(arg SPEED)" />
+    <param name="PIT"                   value="$(arg PIT)" />
+    <param name="VOL"                   value="$(arg VOL)" />
+    <param name="Api_Key"               value="$(arg Api_Key)" />
+    <param name="Secrect_Key"           value="$(arg Secrect_Key)" />
+    
+    <param name="Grant_type"            value="$(arg Grant_type)" />
+    <param name="Token_url"             value="$(arg Token_url)" />
+    <param name="Speeker_url"           value="$(arg Speeker_url)" />    
+    <param name="FORMAT"                value="$(arg FORMAT)" />
+  </node>
+</launch>
+

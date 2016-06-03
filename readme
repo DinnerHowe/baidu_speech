@@ -1,0 +1,11 @@
+App ID: 8168466
+
+API Key: pmUzrWcsA3Ce7RB5rSqsvQt2
+
+Secret Key: d39ec848d016a8474c7c25e308b310c3
+
+
+语音识别　roslaunch simple_voice simple_voice.launch
+语音合成  roslaunch simple_voice simple_speaker.launch
+
+下一步提升：　对输入的语音进行一个，滤波，滤掉周围的杂波

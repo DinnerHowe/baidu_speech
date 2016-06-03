@@ -1,0 +1,39 @@
+<launch>
+  <arg name="REG_NUM_SAMPLES"                    default="2000" />
+  <arg name="REG_SAMPLING_RATE"                  default="8000" />
+  <arg name="REG_UPPER_LEVEL"                    default="5000" />
+  <arg name="REG_LOWER_LEVEL"                    default="500" />
+  <arg name="REG_COUNT_NUM"                      default="20" />
+  <arg name="REG_SAVE_LENGTH"                    default="8" />
+  <arg name="REG_TIME_OUT"                       default="60" />
+  <arg name="REG_NO_WORDS"                       default="6" />
+  <arg name="REG_Api_Key"                        default="pmUzrWcsA3Ce7RB5rSqsvQt2" />
+  <arg name="REG_Secrect_Key"                    default="d39ec848d016a8474c7c25e308b310c3" />
+  <arg name="REG_Grant_type"                     default="client_credentials" />
+  <arg name="REG_Token_url"                      default="https://openapi.baidu.com/oauth/2.0/token" />
+  <arg name="REG_Reg_url"                        default="http://vop.baidu.com/server_api" />
+  <arg name="REG_USER_ID"                        default="8168466" />
+  <arg name="REG_FORMAT"                         default="wav" />
+  <arg name="REG_LAN"                            default="zh" />
+  <arg name="REG_nchannel"                       default="1" />
+  <node pkg="simple_voice" type="voice_node.py" name="voice" output="screen">
+    <param name="REG_NUM_SAMPLES"                  value="$(arg REG_NUM_SAMPLES)"               type="int"/>
+    <param name="REG_SAMPLING_RATE"                value="$(arg REG_SAMPLING_RATE)"             type="int"/>
+    <param name="REG_UPPER_LEVEL"                  value="$(arg REG_UPPER_LEVEL)"               type="int"/>
+    <param name="REG_LOWER_LEVEL"                  value="$(arg REG_LOWER_LEVEL)"               type="int"/>
+    <param name="REG_COUNT_NUM"                    value="$(arg REG_COUNT_NUM)"                 type="int"/>
+    <param name="REG_SAVE_LENGTH"                  value="$(arg REG_SAVE_LENGTH)"               type="int"/>
+    <param name="REG_TIME_OUT"                     value="$(arg REG_TIME_OUT)"                  type="int"/>
+    <param name="REG_NO_WORDS"                     value="$(arg REG_NO_WORDS)"                  type="int"/>
+    <param name="REG_Api_Key"                      value="$(arg REG_Api_Key)"                   type="str"/>
+    <param name="REG_Secrect_Key"                  value="$(arg REG_Secrect_Key)"               type="str"/>
+    <param name="REG_Grant_type"                   value="$(arg REG_Grant_type)"                type="str"/>
+    <param name="REG_Token_url"                    value="$(arg REG_Token_url)"                 type="str"/>
+    <param name="REG_Reg_url"                      value="$(arg REG_Reg_url)"                   type="str"/>
+    <param name="REG_USER_ID"                      value="$(arg REG_USER_ID)"                   type="str"/>
+    <param name="REG_FORMAT"                       value="$(arg REG_FORMAT)"                    type="str"/>
+    <param name="REG_LAN"                          value="$(arg REG_LAN)"                       type="str"/>
+    <param name="REG_nchannel"                     value="$(arg REG_nchannel)"                  type="int"/>
+  </node>
+</launch>
+

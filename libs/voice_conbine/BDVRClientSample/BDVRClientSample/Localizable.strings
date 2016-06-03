@@ -1,0 +1,78 @@
+/* 
+   Localizable.strings
+   AudioClientDemo
+
+   Created by Baidu on 13-9-25.
+   Copyright 2013 Baidu Inc. All rights reserved.
+ */
+
+// 语音搜索
+"StringVoiceRecognitonInit" = "正在初始化";
+"StringVoiceRecognitonPleaseSpeak" = "请说话";
+"StringVoiceRecognitonIdentify" = "正在识别";
+"StringVoiceRecognitonSpeakAgain" = "重试";
+"StringVoiceRecognitonRecordFinish" = "完毕";
+"StringConform" = "确定";
+"StringCancel" = "取消";
+"StringFinish" = "完成";
+
+// 错误码信息
+"StringVoiceRecognitonCantRecord" = "没有检测到麦克风";
+"StringAudioSearchGetTokenFailed" = "获取token出现错误";
+"StringAudioSearchNOMicrophonePermission" = "没有麦克风使用权限，请在系统“设置”→“隐私”→“麦克风”中打开开关";
+"StringVoiceRecognitonInterruptRecord" = "录音中断";
+"StringVoiceRecognitonCantIdentify" = "无法识别您说的内容";
+"StringVoiceRecognitonNetWorkError" = "网络连接错误, 请重试";
+"StringVoiceRecognitonNoNetWork" = "没有网络连接";
+"StringVoiceRecognitonNetWorkTimeOut" = "网络超时";
+"StringVoiceRecognitonParseError" = "服务器数据解析错误";
+
+"StringVoiceRecognitonStatusError" = "一般错误";
+"StringVoiceRecognitonChangeNotAvailable" = "麦克风临时被占用";
+"StringVoiceRecognitonException" = "前端库出现异常";
+"StringVoiceRecognitonNoSpeech" = "用户没有说话";
+"StringVoiceRecognitonNoShort" = "用户说话声太短，比如咳嗽";
+"StringVoiceRecognitonDefaultError" = "其他错误码";
+"StringVoiceRecognitonTooLong" = "用户录音超时";
+"StringVoiceRecognitonServerError" = "服务器返回错误！！";
+
+"StringAudioSearchNoAPIKEY" = "没有设置API KEY";
+"StringVoiceRecognitonNoDelegateMethods" = "没有实现语音识别代理方法";
+
+// 设置界面
+"StringFinishSetting" = "完成";
+"StringVRSetting" = "语音识别功能设置";
+"StringRecoginitonResultContinuousShow" = "开启连续上屏模式";
+"StringLibVersion" = "语音识别客户端SDK版本：";
+"StringVersion" = "开发用例版本：";
+"StringPlayStartMusic" = "开启开始说话语音提示音";
+"StringPlayEndMusic" = "开启结束说话语音提示音";
+"StringRecoginitonMode" = "选择识别模式";
+"StringRecoginitonNLU" = "请求NLU结果";
+"StringLanguage" = "识别语言";
+"StringSaveVoiceLevelMeter" = "监听语音音量级别";
+"StringTheme" = "主题";
+"StringClosedUIHintMusic" = "开启提示音";
+"StringSectionTitleCommon" = "通用设置";
+"StringSectionTitleNoUI" = "API方式接口设置";
+"StringSectionTitleUI" = "识别控件接口设置";
+"StringSectionTitleVersion" = "版本信息";
+
+// 除自动测试外LogView中的显示内容
+"StringLogStatusNone" = "空闲";
+"StringLogStatusPlayStartTone" = "播放开始提示音";
+"StringLogStatusPlayStartToneFinish" = "播放开始提示音完成";
+"StringLogStatusStartWorkIng" = "识别工作开始，开始采集及处理数据";
+"StringLogStatusStart" = "检测到用户开始说话";
+"StringLogStatusPlayEndTone" = "播放结束提示音";
+"StringLogStatusPlayEndToneFinish" = "播放结束提示音完成";
+"StringLogStatusSentenceFinish" = "输入模式下单句识别完成，返回结果";
+"StringLogStatusFinish" = "语音识别功能完成，服务器返回正确结果";
+"StringLogStatusChangeAvailable" = "录音设备可用";
+"StringLogStatusEnd" = "本地声音采集结束结束，等待识别结果返回并结束录音";
+"StringLogStatusNetWorkStatusStart" = "网络开始工作";
+"StringLogStatusNetWorkStatusEnd" = "网络工作完成";
+"StringLogStatusNetWorkStatusErorr" = "识别过程出错，请看result中的信息";
+"StringLogStatusNetWorkStatusCancel" = "用户取消";
+"StringLogStatusNetWorkStatusDefaultErorr" = "出现异常";
+"StringLogVoiceLevel" = "获取的当前音量级别";
