@@ -1,11 +1,26 @@
+# this package is python package for ROS speech, which use online baidu speech to do TTS and speech recognition.
+
+# this code is run well in ubuntu 14.04, thinkpad T44s.
+
+# you can visit the baidu speech home page at here: http://yuyin.baidu.com/
+
+# the key and id is show below, feel free to change it in simple_speaker.launch and simple_voice.launch.
+
+
 App ID: 8168466
 
 API Key: pmUzrWcsA3Ce7RB5rSqsvQt2
 
 Secret Key: d39ec848d016a8474c7c25e308b310c3
 
+# subscribe topic
+speak_string
+#type
+string
 
-语音识别　roslaunch simple_voice simple_voice.launch
-语音合成  roslaunch simple_voice simple_speaker.launch
+# How to run:
 
-下一步提升：　对输入的语音进行一个，滤波，滤掉周围的杂波
+Speech Recognition:　roslaunch simple_voice simple_voice.launch
+Text To Speech:  roslaunch simple_voice simple_speaker.launch
+
+

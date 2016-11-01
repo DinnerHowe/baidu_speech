@@ -1,0 +1,15 @@
+<launch>
+ <arg name='words'                        default="请让一下，谢谢" />
+ <arg name='SpeakerSubTopic'              default="stop_flag" />
+ <arg name="ResponseSensitivity"          default="1.8"/> 
+ <arg name="WorkSpaces"                   default="Xbot"/>  
+  
+ <include file="$(find simple_voice)/launch/simple_speaker.launch" />
+  <param name="ResponseSensitivity"       value="$(arg ResponseSensitivity)" />
+  <param name="WorkSpaces"                value="$(arg WorkSpaces)" />
+    
+ <node pkg="simple_voice" type="node_main.py" name="warning2speaker" output="screen">
+  <param name='words'                     value="$(arg words)"  type="str" />
+  <param name='SpeakerSubTopic'           value="$(arg SpeakerSubTopic)"  type="str" />
+ </node>
+</launch>

@@ -1,11 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"real-time reg 不用存.wav文件，直接识别"
+
+"""Copyright (c) 2016 Xu Zhihao (Howe).  All rights reserved.
+This program is free software; you can redistribute it and/or modify
+This programm is tested on kuboki base turtlebot."""
 
 from pyaudio import PyAudio, paInt16
-import json,base64,os,sys,requests,wave,rospy
+import json
+import base64
+import os
+import sys
+import requests
+import wave
+import rospy
 import numpy as np 
-import array,chunk
+import array
+import chunk
 
 
 class recoder():
@@ -22,11 +32,11 @@ class recoder():
    
    #self.savewav("testing")#testing
    
-   if_continue = raw_input('请输入ＥＮＴＥＲ继续')
+   if_continue = raw_input('pls input ＥＮＴＥＲ to continue')
 
  def reg(self):
  
-  #获取token
+  #get token
   requestData = {       "grant_type":           self.Grant_type, 
                         "client_id":            self.Api_Key, 
                         "client_secret":        self.Secrect_Key}
@@ -38,12 +48,11 @@ class recoder():
   #self.Print_Response(token_data)
   
   if 'access_token' in token_data:  
-   token = token_data['access_token']    #获取的token
-   rospy.loginfo('token获取成功\n')
+   token = token_data['access_token']  
+   rospy.loginfo('token success\n')
   else:
-   rospy.loginfo('token获取失败\n')
+   rospy.loginfo('token failed\n')
    
-  #提交数据
   
   #self.print_data_len(self.Voice_String)
   
@@ -53,7 +62,6 @@ class recoder():
 
   size = len(str_voice)
 
-  #print 'size',size
   
   RegData = {   "format":       self.FORMAT,
                 "rate":         self.SAMPLING_RATE,
@@ -69,10 +77,7 @@ class recoder():
 
   r = requests.post(url = self.Reg_url, data = json.dumps(RegData, sort_keys=True), headers=HTTP_HEADER)
   
-  #print json.dumps(RegData, sort_keys=True),type(json.dumps(RegData, sort_keys=True))
-  
-  
-  #处理JSON
+
   rospy.loginfo( 'response')
   self.Print_Response(r.headers)
   result = json.loads(r.text)
@@ -84,7 +89,7 @@ class recoder():
    word = result['result'][0].encode('utf-8')
    if word!='':
     if word[len(word)-3:len(word)]=='，':
-     rospy.loginfo('识别结果:　%s \n'%word[0:len(word)-3])
+     rospy.loginfo('cog. result:　%s \n'%word[0:len(word)-3])
      return word[0:len(word)-3]
     else:
      rospy.loginfo(word)
@@ -191,7 +196,7 @@ class recoder():
    pass
   else:
    rospy.set_param('~REG_nchannel', 1)
-   
+
    
   self.NUM_SAMPLES = rospy.get_param('~REG_NUM_SAMPLES') # default 2000 pyaudio内置缓冲大小
   #print 'self.NUM_SAMPLES',self.NUM_SAMPLES,type(self.NUM_SAMPLES)

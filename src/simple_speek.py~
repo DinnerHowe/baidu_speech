@@ -5,18 +5,10 @@ This program is free software; you can redistribute it and/or modify
 This programm is tested on kuboki base turtlebot."""
 
 
-from pyaudio import PyAudio
-from pyaudio import paInt16
-import json
-import os
-import sys
-import requests
-import vlc
-import rospy
-import getpass
+from pyaudio import PyAudio, paInt16
+import json,base64,os,sys,requests,vlc,rospy,getpass
 import numpy as np 
 from std_msgs.msg import String
-from threading import Lock
 #from pydub import AudioSegment
 
 "sudo apt-get install python-pygame"
@@ -24,40 +16,12 @@ from threading import Lock
 class speeker():
  def __init__(self):
   self.define()
-  rospy.Subscriber('speak_string', String, self.SpeedCB, queue_size=1)
-  rospy.Timer(rospy.Duration(self.ResponseSensitivity), self.TimerCB)
-  rospy.spin()
-    
-    
- def TimerCB(self, event):
-  with self.locker:
-   self.TalkNow = True
- 
- 
-    
- def SpeedCB(self, data):
- 
-  with self.locker:
-  
+  while not rospy.is_shutdown():
+   data = rospy.wait_for_message('speak_string', String)
    speak_string = data.data
- 
-   if self.TalkNow:
+   self.speek(speak_string)  
   
-    self.WavName = speak_string
-   
-    self.TalkNow = False
-    
-    if os.path.exists(r'%s'%self.mp3file):
-   
-     self.play_video(self.mp3file)
-    
-    else:
-   
-     self.speek(speak_string)
-  
-  
-  
- def speek(self, speak_string):
+ def speek(self,speak_string):
   #获取token
   requestData = {       "grant_type":           self.Grant_type, 
                         "client_id":            self.Api_Key, 
@@ -87,7 +51,7 @@ class speeker():
                         "spd":          self.SPEED,
                         "pit":          self.PIT,
                         "vol":          self.VOL,
-                        "per":          self.PER[self.Gender]}
+                        "per":          self.PER['women']}
 
   re_voice=[]
 
@@ -109,33 +73,18 @@ class speeker():
   
    print '\n合成出错，原因： ',self.error_reason[spker_data[u'err_no']], '\n'
     
-  else:
-  
-   pass
     
   if os.path.exists(r'%s'%file_):
-  
    self.play_video(file_)
-  
-   self.mp3file = file_
-  
   
   
  def define(self):
-  
   self.error_reason = { 500:    '不支持输入',
                         501:    '输入参数不正确',
                         502:    'token验证失败',
                         503:    '合成后端错误'}
                      
   self.PER = {'women': 0, 'man': 1} #发音人选择，取值0-1, 0为女声，1为男声，默认为女声
-  
-  self.WavName = None
-  
-  if rospy.has_param('~Gender'):
-   pass
-  else:
-   rospy.set_param('~Gender', 'women')
                         
   if rospy.has_param('~CTP'):
    pass
@@ -196,19 +145,7 @@ class speeker():
    pass
   else:
    rospy.set_param('~FORMAT', "mp3")
-
-  if rospy.has_param('~ResponseSensitivity'):
-   pass
-  else:
-   rospy.set_param('~ResponseSensitivity', 0.2)
-   
-  if rospy.has_param('~WorkSpaces'):
-   pass
-  else:
-   rospy.set_param('~WorkSpaces', 'Xbot')
-
-  self.Gender = rospy.get_param('~Gender')
- 
+  
   self.CTP = rospy.get_param('~CTP') # default 1
   
   self.LAN = rospy.get_param('~LAN') # default 'zh'
@@ -233,52 +170,27 @@ class speeker():
  
   self.FORMAT = rospy.get_param('~FORMAT') # default 'mp3'
   
-  self.ResponseSensitivity = float(rospy.get_param('~ResponseSensitivity'))
-  
-  self.WorkSpaces = rospy.get_param('~WorkSpaces')
-  
-  self.count = getpass.getuser()
-  
-  path='/home/%s/%s/src/simple_voice/src/'%(self.count, self.WorkSpaces)
-  
-  FileSubName = '请让一下'
-  
-  self.mp3file = '%s'%path + FileSubName + '.%s'%self.FORMAT
-  
-  self.TalkNow = True
-  
-  self.locker = Lock()
   #self.SAMPLING_RATE =       16000    #取样频率
   
   #self.pub = rospy.Publisher('speak_status', String, queue_size=10)
   
- 
  def Print_Response(self, data):
   for i in data:
    print '\t',i, ': ', data[i]
-   pass
-  
   
  def write_mp3(self,data):
   #path=self.current_path()
   #path='/home/turtlebot/xu_slam/src/simple_voice/src/'#testing
-  path='/home/%s/%s/src/simple_voice/src/'%(self.count, self.WorkSpaces)
+  count=getpass.getuser()
+  path='/home/%s/cafe_robot_single/src/simple_voice/src/'%count
   #print type(data.content),len(data.content)
   
   Voice_String=data.content
   
-  #print self.WavName
+  file_=self.savemp3('%s'%path+'testing1',Voice_String)
   
-  if len(self.WavName) > 12:
-   FileSubName = self.WavName[:12]
-  else:
-   FileSubName = self.WavName
-   
-  file_=self.savemp3('%s'%path + FileSubName, Voice_String)
-
   return file_
- 
- 
+  
  def current_path(self):
  
   path=sys.path[0] 
