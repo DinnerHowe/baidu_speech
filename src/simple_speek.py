@@ -17,7 +17,6 @@ import getpass
 import numpy as np 
 from std_msgs.msg import String
 from threading import Lock
-#from pydub import AudioSegment
 
 "sudo apt-get install python-pygame"
 
@@ -46,6 +45,8 @@ class speeker():
     self.WavName = speak_string
    
     self.TalkNow = False
+  
+    self.mp3file = '%s'%self.path + self.WavName + '.%s'%self.FORMAT
     
     if os.path.exists(r'%s'%self.mp3file):
    
@@ -67,15 +68,12 @@ class speeker():
   
   token_data = json.loads(result.text)
   
-  #self.Print_Response(token_data)
-  
   if 'access_token' in token_data:  
    token = token_data['access_token']    #获取的token
    rospy.loginfo('token获取成功\n')#, 'token: ', token , '\n')
   else:
    rospy.loginfo("token获取失败\n")
-  #tex = self.get_text() #for testing
-  #tex = "魔兽世界" #for testing
+
   tex=speak_string
 
   #语音合成
@@ -92,10 +90,6 @@ class speeker():
   re_voice=[]
 
   re = requests.post(url = self.Speeker_url, data = SpkData)
-
-  #print 'header'
-  #self.Print_Response(re.headers)
-  #print 'header\n'
   
   if  'audio/mp3' in re.headers['content-type']: 
     
@@ -239,11 +233,10 @@ class speeker():
   
   self.count = getpass.getuser()
   
-  path='/home/%s/%s/src/simple_voice/src/'%(self.count, self.WorkSpaces)
+  self.path='/home/%s/%s/src/simple_voice/src/'%(self.count, self.WorkSpaces)
   
-  FileSubName = '请让一下'
-  
-  self.mp3file = '%s'%path + FileSubName + '.%s'%self.FORMAT
+  if not os.path.exists(self.path):
+   os.makedirs(self.path)
   
   self.TalkNow = True
   
@@ -260,10 +253,6 @@ class speeker():
   
   
  def write_mp3(self,data):
-  #path=self.current_path()
-  #path='/home/turtlebot/xu_slam/src/simple_voice/src/'#testing
-  path='/home/%s/%s/src/simple_voice/src/'%(self.count, self.WorkSpaces)
-  #print type(data.content),len(data.content)
   
   Voice_String=data.content
   
@@ -274,7 +263,7 @@ class speeker():
   else:
    FileSubName = self.WavName
    
-  file_=self.savemp3('%s'%path + FileSubName, Voice_String)
+  file_=self.savemp3('%s'%self.path + FileSubName, Voice_String)
 
   return file_
  
