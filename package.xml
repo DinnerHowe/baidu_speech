@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <package>
   <name>simple_voice</name>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
   <description>The simple_voice package</description>
   <maintainer email="zhihao@iscas.ac.cn">zhihao</maintainer>
 
   <license>TODO</license>
-
+  <url type="website">http://wiki.ros.org/baidu_speech</url>
+  
   <author email="zhihao@iscas.ac.cn">zhihao</author>
 
   <build_depend>message_generation</build_depend>

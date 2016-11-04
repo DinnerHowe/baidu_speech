@@ -21,6 +21,9 @@ string
 # How to run:
 
 Speech Recognition:　roslaunch simple_voice simple_voice.launch
+
 Text To Speech:  roslaunch simple_voice simple_speaker.launch
 
+# wiki
+http://wiki.ros.org/baidu_speech
 
