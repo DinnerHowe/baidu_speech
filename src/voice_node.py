@@ -16,7 +16,7 @@ import rospy
 import numpy as np 
 import array
 import chunk
-
+from std_msgs.msg import String
 
 class recoder():
 
@@ -27,9 +27,13 @@ class recoder():
    self.define()
 
    self.recode()
-  
-   self.reg()
-   
+
+   words = self.reg()
+
+   reg = rospy.Publisher('Rog_result', String, queue_size=1)
+
+   reg.publish(words)
+
    #self.savewav("testing")#testing
    
    if_continue = raw_input('pls input ＥＮＴＥＲ to continue')

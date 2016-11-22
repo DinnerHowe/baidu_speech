@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """Copyright (c) 2016 Xu Zhihao (Howe).  All rights reserved.
 This program is free software; you can redistribute it and/or modify
-This programm is tested on kuboki base turtlebot."""
+This programm is tested on kuboki base turtlebot.
+This is TTS"""
 
 
 from pyaudio import PyAudio
@@ -18,7 +19,6 @@ import numpy as np
 from std_msgs.msg import String
 from threading import Lock
 
-"sudo apt-get install python-pygame"
 
 class speeker():
  def __init__(self):
