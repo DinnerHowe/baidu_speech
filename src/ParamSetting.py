@@ -10,7 +10,7 @@ This is API for setting param
 
 import rospy
 
-class TTS_set():
+class TTS_():
  def __init__(self):
   self.define(self)
   
@@ -20,22 +20,56 @@ class TTS_set():
  def Sentence(self, words):
   self.say.publish(words)
 
- def engine(self, name = 'baidu')
+ def engine_setting(self, name = 'baidu')
   rospy.loginfo('currently just support baidu and google')
-  if not rospy.has_param('~engine_name'):
-   rospy.set_param('~engine_name', name)
-
- def language(self, data):
-  if not rospy.has_param('LAN'):
-   rospy.set_param('~LAN', data)
+  rospy.set_param('~engine_name', name)
 
  #speaker_settings
- def Gender(self, data):
-  if not rospy.has_param('~Gender'):
-   rospy.set_param('~Gender', data)
+ def Gender_setting(self, data):
+  rospy.set_param('~Gender', data)
 
- def id(self, data):
-  if not rospy.has_param('~USER_ID')
+ def language_setting(self, data):
+  rospy.set_param('~LAN', data)
+
+ def speed_setting(self, data):
+  rospy.set_param('~SPEED', data)
+
+ def intonation_setting(self, data):
+  rospy.set_param('~PIT', data)
+
+ def volume_setting(self, data):
+  rospy.set_param('~VOL', data)
+
+ def format_setting(self, data):
+  rospy.set_param('~FORMAT', data)
+
+ def response_sensitivity(self, data):
+  rospy.set_param('~ResponseSensitivity', data)
+
+ def workspace_setting(self, data):
+  rospy.set_param('~WorkSpaces', data)
 
  #engine setting
+ def CTP_setting(self, data):
+  rospy.set_param('~CTP', data)
+
+ def user_id_setting(self, data):
+  rospy.set_param('~USER_ID', data)
+
+ def key_setting(self, data):
+  rospy.set_param('~Api_Key', data)
+
+ def secrect_key_setting(self, data):
+  rospy.set_param('~Secrect_Key', data)
+
+ def grant_type_setting(self, data):
+  rospy.set_param('~Grant_type', data)
+
+ def Token_url_setting(self, data):
+  rospy.set_param('~Token_url', data)
+
+ def Speeker_url_setting(self, data):
+  rospy.set_param('~Speeker_url', data)
+
+class STT_():
  def
