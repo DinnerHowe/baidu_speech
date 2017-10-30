@@ -15,7 +15,7 @@
   <arg name="WorkSpaces"                default="Xbot"/>   
   <arg name="Gender"                    default="women" />
   
-  <node pkg="simple_voice" type="simple_speek.py" name="speaker" output="screen">
+  <node pkg="baidu_speech" type="simple_speek.py" name="speaker" output="screen">
     <param name="Gender"                value="$(arg Gender)" />
     <param name="CTP"                   value="$(arg CTP)" />
     <param name="LAN"                   value="$(arg LAN)" />

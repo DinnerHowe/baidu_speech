@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>simple_voice</name>
+  <name>baidu_speech</name>
   <version>0.1.1</version>
   <description>The simple_voice package</description>
   <maintainer email="zhihao@iscas.ac.cn">zhihao</maintainer>
